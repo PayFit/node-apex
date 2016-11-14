@@ -2,6 +2,9 @@
 // much λ, much UX.
 module.exports = function λ(fn) {
   return function(e, ctx, cb) {
+    // Process do finish when cb is invoked
+    ctx.callbackWaitsForEmptyEventLoop = false
+
     try {
       var v = fn(e, ctx, cb)
 
