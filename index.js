@@ -13,6 +13,13 @@ function replaceErrors(key, value) {
 }
 
 function logError(err) {
+  // use the existing logger
+  if (global.logger) {
+    return global.logger.error(err.message, {
+      stack: err.stack
+    })
+  }
+
   console.log('Error catch', JSON.stringify(err, replaceErrors))
 }
 
